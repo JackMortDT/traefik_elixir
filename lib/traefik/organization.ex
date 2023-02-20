@@ -8,11 +8,13 @@ defmodule Traefik.Organization do
     |> elem(1)
     |> String.split("\n")
     |> Kernel.tl()
-    |> Enum.map(fn row ->
-      row
-      |> String.split(",")
-      |> transform_developer()
-    end)
+    |> Enum.map(&transform_row/1)
+  end
+
+  defp transform_row(row) do
+    row
+    |> String.split(",")
+    |> transform_developer()
   end
 
   defp transform_developer([id, first_name, last_name, email, gender, ip_address]) do
