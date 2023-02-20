@@ -3,10 +3,11 @@ defmodule Traefik.Organization do
   @devs_file Path.expand("./") |> Path.join("MOCK_DATA.csv")
 
   def list_developers do
-    {:ok, data} = File.read(@devs_file)
-
-    data
+    @devs_file
+    |> File.read()
+    |> elem(1)
     |> String.split("\n")
+    |> Kernel.tl()
     |> Enum.map(fn row ->
       row
       |> String.split(",")
