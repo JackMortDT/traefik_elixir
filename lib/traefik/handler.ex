@@ -150,6 +150,7 @@ request_6 = """
 POST /new HTTP/1.1
 Accept: */*
 Connection: keep-alive
+Content-Type: application/x-www-form-urlencoded
 User-Agent: telnet
 
 name=Luis&company=MakingDevs
