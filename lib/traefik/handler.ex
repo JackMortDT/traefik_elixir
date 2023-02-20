@@ -143,3 +143,16 @@ User-Agent: telnet
 """
 
 IO.puts(Traefik.Handler.handle(request_5))
+
+IO.puts("-------------------------#")
+
+request_6 = """
+POST /new HTTP/1.1
+Accept: */*
+Connection: keep-alive
+User-Agent: telnet
+
+name=Luis&company=MakingDevs
+"""
+
+IO.puts(Traefik.Handler.handle(request_6))
