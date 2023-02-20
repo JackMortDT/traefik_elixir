@@ -49,7 +49,7 @@ defmodule Traefik.Handler do
     |> handle_file(conn)
   end
 
-  def route(%Conn{path: path} = conn) do
+  def route(%Conn{method: _method, path: path} = conn) do
     %{conn | status: 404, response: "No #{path} found!!!"}
   end
 
