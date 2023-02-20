@@ -11,6 +11,19 @@ defmodule Traefik.Organization do
     |> Enum.map(&transform_row/1)
   end
 
+  def get_developer(id) when is_binary(id) do
+    id
+    |> String.to_integer()
+    |> get_developer()
+  end
+
+  def get_developer(id) when is_integer(id) do
+    Enum.find(list_developers(), fn
+      nil -> false
+      dev -> dev.id == id
+    end)
+  end
+
   defp transform_row(row) do
     row
     |> String.split(",")
@@ -19,7 +32,7 @@ defmodule Traefik.Organization do
 
   defp transform_developer([id, first_name, last_name, email, gender, ip_address]) do
     %Developer{
-      id: id,
+      id: String.to_integer(id),
       first_name: first_name,
       last_name: last_name,
       email: email,
