@@ -20,14 +20,6 @@ defmodule Traefik.Parser do
     |> IO.inspect()
   end
 
-  defp parse_params(params_string) do
-    params_string
-    |> URI.decode_query()
-    |> Map.new(fn {key, value} ->
-      {key, String.replace(value, "\n", "")}
-    end)
-  end
-
   def parse_headers([head | tail], headers) do
     [header_name, header_value] = String.split(head, ": ")
     headers = Map.put(headers, header_name, header_value)
@@ -36,11 +28,19 @@ defmodule Traefik.Parser do
 
   def parse_headers([], headers), do: headers
 
-  defp parse_params([], headers), do: headers
+  def parse_params([], headers), do: headers
 
-  defp parse_params("application/x-www-form-urlencoded", params_string) do
+  def parse_params("application/x-www-form-urlencoded", params_string) do
     parse_params(params_string)
   end
 
-  defp parse_params(_, _), do: %{}
+  def parse_params(_, _), do: %{}
+
+  defp parse_params(params_string) do
+    params_string
+    |> URI.decode_query()
+    |> Map.new(fn {key, value} ->
+      {key, String.replace(value, "\n", "")}
+    end)
+  end
 end
