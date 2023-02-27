@@ -28,6 +28,14 @@ defmodule Traefik.Parser do
     end)
   end
 
+  def parse_headers([head | tail], headers) do
+    [header_name, header_value] = String.split(head, ": ")
+    headers = Map.put(headers, header_name, header_value)
+    parse_headers(tail, headers)
+  end
+
+  def parse_headers([], headers), do: headers
+
   defp parse_params([], headers), do: headers
 
   defp parse_params("application/x-www-form-urlencoded", params_string) do
@@ -35,12 +43,4 @@ defmodule Traefik.Parser do
   end
 
   defp parse_params(_, _), do: %{}
-
-  defp parse_headers([head | tail], headers) do
-    [header_name, header_value] = String.split(head, ": ")
-    headers = Map.put(headers, header_name, header_value)
-    parse_headers(tail, headers)
-  end
-
-  defp parse_headers([], headers), do: headers
 end
