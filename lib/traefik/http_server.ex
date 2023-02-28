@@ -7,14 +7,13 @@ defmodule Traefik.HttpServer do
 
     IO.puts("🎧 Listen on #{port}")
     accept_loop(listen_socket)
-    :ok = :gen_tcp.close(listen_socket)
   end
 
   def accept_loop(listen_socket) do
     IO.puts("Waits for a client connection... 🙉")
     {:ok, socket} = :gen_tcp.accept(listen_socket)
     IO.puts("Client connected 👯")
-    serve(socket)
+    spawn(fn -> serve(socket) end)
     accept_loop(listen_socket)
   end
 
