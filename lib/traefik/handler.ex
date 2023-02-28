@@ -8,7 +8,7 @@ defmodule Traefik.Handler do
   import Traefik.Plugs, only: [rewrite_path: 1, track: 1]
   import Traefik.Parser, only: [parse: 1]
   alias Traefik.Conn
-  alias Traefik.DeveloperController
+  alias Traefik.{DeveloperController, FibonacciController}
   alias Traefik.Api.DeveloperController, as: ApiDeveloperController
 
   @doc """
@@ -31,6 +31,10 @@ defmodule Traefik.Handler do
   def route(%Conn{method: "GET", path: "/freeze/" <> freeze} = conn) do
     freeze |> String.to_integer() |> :timer.sleep()
     %{conn | status: 200, response: "unfreeze !!!!"}
+  end
+
+  def route(%Conn{method: "POST", path: "/fibonacci", params: params} = conn) do
+    FibonacciController.compute(conn, params)
   end
 
   def route(%Conn{method: "GET", path: "/hello"} = conn) do
