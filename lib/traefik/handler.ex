@@ -9,6 +9,7 @@ defmodule Traefik.Handler do
   import Traefik.Parser, only: [parse: 1]
   alias Traefik.Conn
   alias Traefik.DeveloperController
+  alias Traefik.Api.DeveloperController, as: ApiDeveloperController
 
   @doc """
   Handle a single request, transforms into response.
@@ -40,7 +41,7 @@ defmodule Traefik.Handler do
   end
 
   def route(%Conn{method: "GET", path: "/api/developer"} = conn) do
-    DeveloperController.index(conn)
+    ApiDeveloperController.index(conn)
   end
 
   def route(%Conn{method: "POST", path: "/new", params: params} = conn) do
@@ -73,6 +74,7 @@ defmodule Traefik.Handler do
     HTTP/1.1 #{Conn.status(conn)}
     Host: some.com
     User-Agent: telnet
+    Content-Type: #{conn.content_type}
     Content-Lenght: #{String.length(conn.response)}
     Accept: */*
 
