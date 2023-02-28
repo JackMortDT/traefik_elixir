@@ -1,4 +1,6 @@
 defmodule Traefik.HttpServer do
+  alias Traefik.Handler
+
   def start(port \\ 1024) when is_integer(port) and port > 1023 do
     {:ok, listen_socket} =
       :gen_tcp.listen(port, [:binary, packet: :raw, active: false, reuseaddr: true])
@@ -20,6 +22,7 @@ defmodule Traefik.HttpServer do
     client_socket
     |> read()
     |> handles()
+    |> Handler.handle()
     |> write_response(client_socket)
   end
 
