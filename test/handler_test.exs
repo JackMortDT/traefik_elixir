@@ -19,6 +19,7 @@ defmodule Traefik.HandlerTest do
            HTTP/1.1 200 OK
            Host: some.com
            User-Agent: telnet
+           Content-Type: text/html
            Content-Lenght: 14
            Accept: */*
 
@@ -42,6 +43,7 @@ defmodule Traefik.HandlerTest do
            HTTP/1.1 200 OK
            Host: some.com
            User-Agent: telnet
+           Content-Type: text/html
            Content-Lenght: 29
            Accept: */*
 
@@ -65,6 +67,7 @@ defmodule Traefik.HandlerTest do
            HTTP/1.1 404 Not Found
            Host: some.com
            User-Agent: telnet
+           Content-Type: text/html
            Content-Lenght: 22
            Accept: */*
 
@@ -88,6 +91,7 @@ defmodule Traefik.HandlerTest do
            HTTP/1.1 404 Not Found
            Host: some.com
            User-Agent: telnet
+           Content-Type: text/html
            Content-Lenght: 16
            Accept: */*
 
@@ -111,6 +115,7 @@ defmodule Traefik.HandlerTest do
            HTTP/1.1 200 OK
            Host: some.com
            User-Agent: telnet
+           Content-Type: text/html
            Content-Lenght: 157
            Accept: */*
 
@@ -144,6 +149,7 @@ defmodule Traefik.HandlerTest do
            HTTP/1.1 201 Created
            Host: some.com
            User-Agent: telnet
+           Content-Type: text/html
            Content-Lenght: 41
            Accept: */*
 
@@ -167,6 +173,7 @@ defmodule Traefik.HandlerTest do
            HTTP/1.1 200 OK
            Host: some.com
            User-Agent: telnet
+           Content-Type: text/html
            Content-Lenght: 191
            Accept: */*
 
@@ -203,6 +210,7 @@ defmodule Traefik.HandlerTest do
            HTTP/1.1 200 OK
            Host: some.com
            User-Agent: telnet
+           Content-Type: text/html
            Content-Lenght: 69
            Accept: */*
 
@@ -226,6 +234,7 @@ defmodule Traefik.HandlerTest do
            HTTP/1.1 200 OK
            Host: some.com
            User-Agent: telnet
+           Content-Type: application/json
            Content-Lenght: 1326
            Accept: */*
 
